@@ -1,5 +1,5 @@
-#ifndef LAB4_BMPHEADER_H
-#define LAB4_BMPHEADER_H
+#ifndef IMAGE_EDITOR_BMPHEADER_H
+#define IMAGE_EDITOR_BMPHEADER_H
 
 #define ALIGNMENT_FACTOR 4
 #include <cstdint>

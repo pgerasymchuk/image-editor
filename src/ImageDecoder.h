@@ -1,5 +1,5 @@
-#ifndef LAB4_IMAGE_READER_H
-#define LAB4_IMAGE_READER_H
+#ifndef IMAGE_EDITOR_IMAGE_READER_H
+#define IMAGE_EDITOR_IMAGE_READER_H
 
 #include <cstdint>
 #include <string>

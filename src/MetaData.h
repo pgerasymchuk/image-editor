@@ -1,5 +1,5 @@
-#ifndef LAB4_META_DATA
-#define LAB4_META_DATA
+#ifndef IMAGE_EDITOR_META_DATA
+#define IMAGE_EDITOR_META_DATA
 
 #include <cstdint>
     

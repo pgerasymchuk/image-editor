@@ -1,5 +1,5 @@
-#ifndef LAB4_IMAGE_ENCODER_H
-#define LAB4_IMAGE_ENCODER_H
+#ifndef IMAGE_EDITOR_IMAGE_ENCODER_H
+#define IMAGE_EDITOR_IMAGE_ENCODER_H
 
 #include <cstdint>
 #include <string>

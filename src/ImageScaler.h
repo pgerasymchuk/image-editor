@@ -1,5 +1,5 @@
-#ifndef LAB4_IMAGE_SCALER_H
-#define LAB4_IMAGE_SCALER_H
+#ifndef IMAGE_EDITOR_IMAGE_SCALER_H
+#define IMAGE_EDITOR_IMAGE_SCALER_H
 
 #include <fstream>
 #include <vector>

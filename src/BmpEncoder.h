@@ -1,5 +1,5 @@
-#ifndef LAB4_BMP_ENCODER_H
-#define LAB4_BMP_ENCODER_H
+#ifndef IMAGE_EDITOR_BMP_ENCODER_H
+#define IMAGE_EDITOR_BMP_ENCODER_H
 
 #include "ImageEncoder.h"
 #include "BmpHeader.h"

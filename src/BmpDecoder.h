@@ -1,5 +1,5 @@
-#ifndef LAB4_BMP_DECODER_H
-#define LAB4_BMP_DECODER_H
+#ifndef IMAGE_EDITOR_BMP_DECODER_H
+#define IMAGE_EDITOR_BMP_DECODER_H
 #include <iostream>
 #include "ImageDecoder.h"
 #include "MetaData.h"

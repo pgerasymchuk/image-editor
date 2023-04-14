@@ -1,5 +1,5 @@
-#ifndef LAB4_PIXEL_H
-#define LAB4_PIXEL_H
+#ifndef IMAGE_EDITOR_PIXEL_H
+#define IMAGE_EDITOR_PIXEL_H
 
 #include <cstdint>
 #include <vector>
