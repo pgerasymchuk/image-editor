@@ -1,13 +1,13 @@
 # 🖼️ image-editor - C++ Image Scaling Library
 
-iamge-editor a lightweight C++ library for **editing and scaling image files**.  
+image-editor a lightweight C++ library for **editing and scaling image files**.  
 It supports reading **24-bit BMP images**, resizing them using image scaling algorithms, and saving the results back to BMP format.
 
 ---
 
 ## 📖 About the Project
 
-This project is a minimal, self-contained library for **image scaling** written in modern C++.  
+This project is a self-contained library for **image scaling** written in modern C++.  
 It demonstrates core concepts of image processing, including:
 
 - **Decoding BMP files** into raw pixel data (`BmpDecoder`).
