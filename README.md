@@ -1,96 +1,43 @@
-# 🖼️ image-editor - C++ Image Scaling Library
+# 🖼️ image-editor — BMP Image Scaling in C++
 
-image-editor a lightweight C++ library for **editing and scaling image files**.  
-It supports reading **24-bit BMP images**, resizing them using image scaling algorithms, and saving the results back to BMP format.
+A lightweight C++ tool for scaling BMP images. It decodes an uncompressed BMP file, enlarges it by an integer factor and writes the result as a new BMP, without any third-party libraries.
 
----
+## 📖 How it works
 
-## 📖 About the Project
+The program is split into small, replaceable parts:
 
-This project is a self-contained library for **image scaling** written in modern C++.  
-It demonstrates core concepts of image processing, including:
+- **`ImageDecoder` / `ImageEncoder`** — abstract interfaces for reading an image row by row and writing it back. New formats can be added by implementing these two classes.
+- **`BmpDecoder`** — reads the BMP header, checks the signature and colour depth and returns pixel rows, skipping the row padding.
+- **`BmpEncoder`** — builds a new header with the updated size and writes rows with correct 4-byte padding.
+- **`ImageScaler`** — scales the image with **nearest-neighbour interpolation**: each pixel is repeated `factor` times horizontally and each row `factor` times vertically.
+- **`BmpHeader`, `MetaData`, `Pixel`** — packed header structures and the in-memory pixel representation.
 
-- **Decoding BMP files** into raw pixel data (`BmpDecoder`).
-- **In-memory image representation** with width, height, and RGB pixel buffer (`Image`).
-- **Resizing algorithms** (nearest neighbor and bilinear interpolation) for scaling (`ImageScaler`).
-- **Re-encoding BMP files** with proper headers and padding (`BmpEncoder`).
+The image is processed as a stream, one row at a time, so even large files never have to be fully loaded into memory.
 
-The library provides a **command-line interface** where the user supplies three arguments:
+Supported input: uncompressed BMP with 24 or 32 bits per pixel.
 
-```bash
-<program> <input_file.bmp> <output_file.bmp> <scale_factor>
-```
-
-Example:
+## 🚀 Build and run
 
 ```bash
-./image_scaler input.bmp output.bmp 2
+g++ -std=c++17 -O2 -o image_scaler src/*.cpp
+./image_scaler data/input.bmp output.bmp 3
 ```
 
-This doubles the size of `input.bmp` and writes the result to `output.bmp`.
+Arguments: `<input.bmp> <output.bmp> <scale_factor>`, where the scale factor is a positive integer.
 
----
-
-## ⚙️ Implementation Details
-
-### File Overview
-
-- **`BmpDecoder.{h,cpp}`** – Handles reading BMP headers and extracting raw pixel data from 24-bit BMP images.
-- **`BmpEncoder.{h,cpp}`** – Saves `Image` objects back into BMP format, handling padding and file size calculations.
-- **`BmpHeader.h`** – Defines **bitmap headers** (`BitmapFileHeader` and `BitmapInfoHeader`) with proper byte alignment.
-- **`Image.{h,cpp}`** – Represents an in-memory image with pixel data stored in a `std::vector<uint8_t>`.
-- **`ImageScaler.{h,cpp}`** – Implements image scaling using:
-  - **Nearest Neighbor** – Fast but may produce blocky results.
-  - **Bilinear Interpolation** – Higher quality, smoother results (default).
-
-### BMP Constraints
-- Only **24-bit BMP** images are supported【13†source】.
-- No compression (`BI_RGB` only).
-- Row padding is properly handled on saving.
-
----
-
-## 🚀 How to Build and Run
-
-### Prerequisites
-- A C++17 (or newer) compiler (GCC, Clang, MSVC).
-- CMake (optional, if you want a build system).
-
-### Build (using g++)
-```bash
-g++ -std=c++17 -O2 -o image_scaler     BmpDecoder.cpp BmpEncoder.cpp Image.cpp ImageScaler.cpp main.cpp
-```
-
-### Run
-```bash
-./image_scaler input.bmp output.bmp 2
-```
-
-This scales the input image by a factor of 2 and saves the result.
-
----
-
-## 🧪 Example Usage
-
-#### Input → Output (scale = 3)
+## 🧪 Example (scale = 3)
 
 | Input (124×124) | Output (372×372) |
 |-----------------|------------------|
 | ![input](data/input.bmp) | ![output](data/output.bmp) |
 
+## 🗂 Project structure
 
-## ✨ Features
+```
+src/    decoder, encoder, scaler and BMP structures
+data/   sample input and output images
+```
 
-- ✅ Supports **loading and saving BMP** images.  
-- ✅ Scaling via **nearest neighbor** or **bilinear interpolation**.  
-- ✅ Lightweight, no external dependencies.  
-- ✅ Modular design (easy to extend with other formats or filters).  
+## 🛠️ Tech stack
 
----
-
-## 🔮 Future Improvements
-
-- Add support for other formats (PNG, JPEG).  
-- Implement more scaling filters (bicubic, Lanczos).  
-- Add unit tests and benchmarks.  
-- Provide Python bindings via PyBind11 for easy integration.  
+C++17 · STL · binary file I/O · no external dependencies
